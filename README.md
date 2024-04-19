@@ -58,7 +58,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 
    **NOTE:** _Your prompt is also considered when calculating the number of tokens._
 
-2. Setting `max_tokens` to `20` means that the Claude API will not return the complete answer if the token limit is exceeded. In such cases, an error message stating Max token reached. Please simplify your prompt. will be returned. Refer to the `claude-provider.tsx` file for the corresponding code:
+2. Setting `max_tokens` to `20` means that the Claude API will not return the complete answer if the token limit is exceeded. In such cases, an error message stating "Max token reached. Please simplify your prompt." will be returned. Refer to the `claude-provider.tsx` file for the corresponding code:
    ```bash
          if (data.stop_reason === "max_tokens")
            throw new Error("Max token reached. Please simplify your prompt.");
