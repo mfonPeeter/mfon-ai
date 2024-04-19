@@ -19,7 +19,7 @@ describe("Claude Provider", () => {
       fireEvent.submit(textArea);
 
       // Wait for the API request to complete
-      await waitFor(() => screen.getByText("Test message"));
+      await waitFor(() => screen.findByText("Test message"));
 
       // Verify that the message returned from the API is displayed
       expect(screen.getByText("Test message")).toBeInTheDocument();
