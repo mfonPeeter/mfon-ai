@@ -10,13 +10,18 @@ npm run dev
 yarn dev
 # or
 pnpm
+
 # or
 bun dev
 ```
+![test](https://github.com/mfonPeeter/mfon-ai/blob/main/public/close.svg)
+Image:
+<img width="1440" alt="mfon-ai" src="https://github.com/mfonPeeter/mfon-ai/assets/105684251/53eb5394-5f35-41f2-bc60-fd1a6575ce8f.png">
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<img width="1440" alt="mfon-ai" src="https://github.com/mfonPeeter/mfon-ai/assets/105684251/b65caeac-b71e-4aa0-88e5-61e46ad0d5f2">
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
