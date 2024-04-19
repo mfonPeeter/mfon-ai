@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) and TypeScript project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+### Installing Packages
+
+To install the necessary Node.js modules, run:
+
+```bash
+npm install
+```
+
+### Adding Environment Variables and using them
+
+This project utilizes the [Claude API](https://docs.anthropic.com/claude/reference/getting-started-with-the-api). If you intend to clone the project for customization, you'll need to generate an API key on the platform and add it to your headers.
+
+#### Step 1: Add environment variables in a file named `.env.local` at the root of your directory:
+
+```bash
+CLAUDE_API_KEY=${API_KEY}
+```
+
+#### Step 2: Include the following headers when making a request to the Claude API:
+
+```bash
+    headers: {
+      "x-api-key": process.env.CLAUDE_API_KEY as string,
+      "anthropic-version": "2023-06-01",
+      "content-type": "application/json",
+    }
+```
+
+### Running the Development Server
+
+To start the development server, run:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Things to Note
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. In the request body, the `max_tokens` parameter is set to `20` to limit the number of tokens returned by the Claude API. This is because I'm currently using the free tier of the Claude API and want to avoid exceeding my usage limits for this personal project
 
-## Learn More
+   ```bash
+      body: JSON.stringify({
+     model: "claude-3-opus-20240229",
+     max_tokens: 20,
+     temperature: 0,
+     system: "Respond in short and clear sentences.",
+     messages: [{ role: "user", content: message }],
+   }),
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+   **NOTE:** _Your prompt is also considered when calculating the number of tokens._
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Setting `max_tokens` to `20` means that the Claude API will not return the complete answer if the token limit is exceeded. In such cases, an error message stating Max token reached. Please simplify your prompt. will be returned. Refer to the `claude-provider.tsx` file for the corresponding code:
+   ```bash
+         if (data.stop_reason === "max_tokens")
+           throw new Error("Max token reached. Please simplify your prompt.");
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Testing
 
-## Deploy on Vercel
+I'm still in the process of implementing unit and integration tests using React Testing Library, Jest and Mock Service Worker
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The project is deployed on Vercel. You can access the live version at [mfon-ai.vercel.app](https://mfon-ai.vercel.app/)
+
+## Future Plans
+
+- Implement streaming of the response from the Claude API instead of returning it all at once.
+- I'm considering saving the response in a database to persist the data upon reload.
