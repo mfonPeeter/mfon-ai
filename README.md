@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org/) and TypeScript project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+<img width="1440" alt="mfon-ai" src="https://github.com/mfonPeeter/mfon-ai/assets/105684251/b65caeac-b71e-4aa0-88e5-61e46ad0d5f2">
+
 ## Getting Started
 
 ### Installing Packages
