@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
       "content-type": "application/json",
     },
     body: JSON.stringify({
-      model: "claude-3-opus-20240229",
+      model: "claude-3-haiku-20240307",
       max_tokens: 20,
       temperature: 0,
       system: "Respond in short and clear sentences.",
