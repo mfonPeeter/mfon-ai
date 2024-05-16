@@ -44,12 +44,12 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 
 ## Things to Note
 
-1. In the request body, the `max_tokens` parameter is set to `20` to limit the number of tokens returned by the Claude API. This is because I'm currently using the free tier of the Claude API and want to avoid exceeding my usage limits for this personal project
+1. In the request body, the `max_tokens` parameter is set to `100` to limit the number of tokens returned by the Claude API. This is because I'm currently using the free tier of the Claude API and want to avoid exceeding my usage limits for this personal project
 
    ```bash
       body: JSON.stringify({
      model: "claude-3-opus-20240229",
-     max_tokens: 20,
+     max_tokens: 100,
      temperature: 0,
      system: "Respond in short and clear sentences.",
      messages: [{ role: "user", content: message }],
@@ -58,7 +58,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 
    **NOTE:** _Your prompt is also considered when calculating the number of tokens._
 
-2. Setting `max_tokens` to `20` means that the Claude API will not return the complete answer if the token limit is exceeded. In such cases, an error message stating "Max token reached. Please simplify your prompt." will be returned. Refer to the `claude-provider.tsx` file for the corresponding code:
+2. Setting `max_tokens` to `100` means that the Claude API will not return the complete answer if the token limit is exceeded. In such cases, an error message stating "Max token reached. Please simplify your prompt." will be returned. Refer to the `claude-provider.tsx` file for the corresponding code:
    ```bash
          if (data.stop_reason === "max_tokens")
            throw new Error("Max token reached. Please simplify your prompt.");
